@@ -30,9 +30,9 @@ public class Startup
                 document.Info.TermsOfService = "None";
                 document.Info.Contact = new OpenApiContact
                 {
-                    Name = "Chris Patterson",
+                    Name = "Some One",
                     Email = string.Empty,
-                    Url = "https://github.com/phatboyg"
+                    Url = "https://github.com/someone"
                 };
                 document.Info.License = new OpenApiLicense
                 {
