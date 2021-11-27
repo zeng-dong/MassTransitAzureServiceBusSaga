@@ -25,14 +25,14 @@ public class Program
                     x.AddConsumer<OrderSubmittedConsumer>();
 
                     x.UsingAzureServiceBus((context, cfg) =>
-                    {                        
+                    {
                         cfg.Host(hostContext.Configuration.GetConnectionString("AzureServiceBus"));
 
-                            // Subscribe to OrderSubmitted directly on the topic, instead of configuring a queue
-                            cfg.SubscriptionEndpoint<OrderSubmitted>("masstransitsaga-order-submitted-consumer", e =>
-                        {
-                            e.ConfigureConsumer<OrderSubmittedConsumer>(context);
-                        });
+                        // Subscribe to OrderSubmitted directly on the topic, instead of configuring a queue
+                        cfg.SubscriptionEndpoint<OrderSubmitted>("masstransitsaga-order-submitted-consumer", e =>
+                            {
+                                e.ConfigureConsumer<OrderSubmittedConsumer>(context);
+                            });
 
                         cfg.ConfigureEndpoints(context);
                     });
@@ -42,3 +42,4 @@ public class Program
             });
     }
 }
+
