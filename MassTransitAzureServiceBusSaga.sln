@@ -3,15 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31912.275
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contracts", "src\Contracts\Contracts.csproj", "{833EF798-027C-4329-A044-690C41AA5548}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Contracts", "src\Contracts\Contracts.csproj", "{833EF798-027C-4329-A044-690C41AA5548}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{B61A2466-DF90-4306-89C6-FA46A8BF305C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Api", "src\Api\Api.csproj", "{B61A2466-DF90-4306-89C6-FA46A8BF305C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "src\Worker\Worker.csproj", "{A91E2B75-0850-43C6-852D-08CA7F9CED76}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerService", "src\WorkerService\WorkerService.csproj", "{A3D9E0ED-1C36-492E-A66F-1D0E811278D4}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkerServiceNetThree", "src\WorkerServiceNetThree\WorkerServiceNetThree.csproj", "{36290E84-B272-4802-B2D6-4ED0BCF528A9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "src\Worker\Worker.csproj", "{A91E2B75-0850-43C6-852D-08CA7F9CED76}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,14 +27,6 @@ Global
 		{A91E2B75-0850-43C6-852D-08CA7F9CED76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A91E2B75-0850-43C6-852D-08CA7F9CED76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A91E2B75-0850-43C6-852D-08CA7F9CED76}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A3D9E0ED-1C36-492E-A66F-1D0E811278D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A3D9E0ED-1C36-492E-A66F-1D0E811278D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A3D9E0ED-1C36-492E-A66F-1D0E811278D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A3D9E0ED-1C36-492E-A66F-1D0E811278D4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{36290E84-B272-4802-B2D6-4ED0BCF528A9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{36290E84-B272-4802-B2D6-4ED0BCF528A9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{36290E84-B272-4802-B2D6-4ED0BCF528A9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{36290E84-B272-4802-B2D6-4ED0BCF528A9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
