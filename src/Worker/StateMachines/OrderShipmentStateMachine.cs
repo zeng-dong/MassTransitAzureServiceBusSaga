@@ -30,7 +30,15 @@ public class OrderShipmentStateMachine : MassTransitStateMachine<OrderShipmentSt
                 .TransitionTo(WaitingForShipment)
             );
 
-       
+        During(Initial, WaitingForShipment,
+            When(MonitorTimeout.Received)
+                .Then(context => logger.LogInformation("Shipment Overdue: {OrderId}", context.Instance.CorrelationId))
+                .TransitionTo(ShipmentOverdue),
+            When(OrderShipped)
+                .Then(context => logger.LogInformation("Shipment Completed: {OrderId}", context.Instance.CorrelationId))
+                .TransitionTo(ShipmentComplete)
+            );
+
 
     }
 
