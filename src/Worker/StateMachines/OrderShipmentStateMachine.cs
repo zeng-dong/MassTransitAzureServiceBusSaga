@@ -39,7 +39,18 @@ public class OrderShipmentStateMachine : MassTransitStateMachine<OrderShipmentSt
                 .TransitionTo(ShipmentComplete)
             );
 
+        During(ShipmentOverdue,
+                Ignore(MonitorTimeout.Received),
+                When(OrderShipped)
+                    .Then(context => logger.LogInformation("Shipment Completed (overdue): {OrderId}", context.Instance.CorrelationId))
+                    .TransitionTo(ShipmentComplete)
+            );
 
+        During(ShipmentComplete,
+                Ignore(MonitorTimeout.Received),
+                When(OrderSubmitted)
+                    .Then(context => logger.LogInformation("Order Shipment (already shipped): {OrderId}", context.Instance.CorrelationId))
+            );
     }
 
     public Event<OrderSubmitted> OrderSubmitted { get; }
