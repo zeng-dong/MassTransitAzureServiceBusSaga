@@ -26,7 +26,7 @@ public class Program
 
                     x.UsingAzureServiceBus((context, cfg) =>
                     {
-                        cfg.Host(hostContext.Configuration.GetConnectionString("AzureServiceBus"));
+                        cfg.Host(hostContext.Configuration.GetConnectionString("AzureServiceBus"));                        
 
                         // Subscribe to OrderSubmitted directly on the topic, instead of configuring a queue
                         cfg.SubscriptionEndpoint<OrderSubmitted>("masstransitsaga-order-submitted-consumer", e =>
