@@ -1,4 +1,5 @@
-﻿using MassTransit;
+﻿using Contracts;
+using MassTransit;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Newtonsoft.Json;
@@ -50,6 +51,8 @@ namespace Api
                 x.UsingAzureServiceBus((_, cfg) =>
                 {
                     cfg.Host(Configuration.GetConnectionString("AzureServiceBus"));
+
+                    cfg.Send<OrderShipped>(s => s.UseSessionIdFormatter(c => c.Message.OrderId.ToString("D")));
                 });
             });
             services.AddMassTransitHostedService();
