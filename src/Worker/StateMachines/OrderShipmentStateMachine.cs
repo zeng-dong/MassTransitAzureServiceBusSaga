@@ -36,6 +36,7 @@ public class OrderShipmentStateMachine : MassTransitStateMachine<OrderShipmentSt
                 .TransitionTo(ShipmentOverdue),
             When(OrderShipped)
                 .Then(context => logger.LogInformation("Shipment Completed: {OrderId}", context.Instance.CorrelationId))
+                .Unschedule(MonitorTimeout)
                 .TransitionTo(ShipmentComplete)
             );
 
