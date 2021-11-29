@@ -2,6 +2,7 @@
 using MassTransit;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
+using Worker.StateMachines;
 
 namespace Worker;
 
@@ -19,14 +20,24 @@ public class Program
             {
                 services.AddMassTransit(x =>
                 {
+                    x.AddServiceBusMessageScheduler();
+
                     x.SetKebabCaseEndpointNameFormatter();
 
                     x.AddConsumer<SubmitOrderConsumer>();
                     x.AddConsumer<OrderSubmittedConsumer>();
 
+                    x.AddSagaStateMachine<OrderShipmentStateMachine, OrderShipmentState, OrderShipmentSagaDefinition>()
+                        .MessageSessionRepository();
+
                     x.UsingAzureServiceBus((context, cfg) =>
                     {
-                        cfg.Host(hostContext.Configuration.GetConnectionString("AzureServiceBus"));                        
+                        cfg.Host(hostContext.Configuration.GetConnectionString("AzureServiceBus"));
+
+                        cfg.UseServiceBusMessageScheduler();
+
+                        cfg.Send<OrderSubmitted>(s => s.UseSessionIdFormatter(c => c.Message.OrderId.ToString("D")));
+                        cfg.Send<MonitorOrderShipmentTimeout>(s => s.UseSessionIdFormatter(c => c.Message.OrderId.ToString("D")));
 
                         // Subscribe to OrderSubmitted directly on the topic, instead of configuring a queue
                         cfg.SubscriptionEndpoint<OrderSubmitted>("masstransitsaga-order-submitted-consumer", e =>
